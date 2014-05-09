@@ -20,8 +20,6 @@ from taiga.base.serializers import PickleField
 
 from . import models
 
-import reversion
-
 
 class TaskSerializer(serializers.ModelSerializer):
     tags = PickleField(required=False, default=[])
