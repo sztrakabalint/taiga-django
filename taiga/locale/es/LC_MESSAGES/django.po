@@ -4,14 +4,15 @@
 #
 # Translators:
 # Esther Moreno <soyesthermoreno@yahoo.es>, 2015
+# gustavodiazjaimes <gustavodiazjaimes@gmail.com>, 2015
 # Taiga Dev Team <support@taiga.io>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: taiga-back\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-25 20:09+0100\n"
-"PO-Revision-Date: 2015-03-26 09:53+0000\n"
-"Last-Translator: Esther Moreno <soyesthermoreno@yahoo.es>\n"
+"POT-Creation-Date: 2015-04-17 12:24+0200\n"
+"PO-Revision-Date: 2015-04-16 20:26+0000\n"
+"Last-Translator: gustavodiazjaimes <gustavodiazjaimes@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/taiga-back/"
 "language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -20,17 +21,26 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: taiga/auth/api.py:100
+#: taiga/auth/api.py:99
 msgid "Public register is disabled."
 msgstr "El registro público está deshabilitado."
 
-#: taiga/auth/api.py:133
+#: taiga/auth/api.py:132
 msgid "invalid register type"
 msgstr "Tipo de registro inválido"
 
-#: taiga/auth/api.py:146
+#: taiga/auth/api.py:145
 msgid "invalid login type"
 msgstr "Tipo de login inválido"
+
+#: taiga/auth/serializers.py:34 taiga/users/serializers.py:50
+msgid "invalid username"
+msgstr "nombre de usuario no válido"
+
+#: taiga/auth/serializers.py:39 taiga/users/serializers.py:56
+msgid ""
+"Required. 255 characters or fewer. Letters, numbers and /./-/_ characters'"
+msgstr "Son necesarios. 255 caracteres o menos (letras, números y /./-/_)"
 
 #: taiga/auth/services.py:75
 msgid "Username is already in use."
@@ -40,49 +50,346 @@ msgstr "Nombre de usuario no disponible"
 msgid "Email is already in use."
 msgstr "Email no disponible"
 
+#: taiga/auth/services.py:94
+msgid "Token not matches any valid invitation."
+msgstr "El token no pertenece a ninguna invitación válida."
+
+#: taiga/auth/services.py:122
+msgid "User is already registered."
+msgstr "Este usuario ya está registrado."
+
+#: taiga/auth/services.py:146
+msgid "Membership with user is already exists."
+msgstr "Ya existe una membresía asociada a este usuario."
+
 #: taiga/auth/services.py:172
 msgid "Error on creating new user."
 msgstr "Error al crear un nuevo usuario "
 
-#: taiga/base/api/generics.py:162
+#: taiga/auth/tokens.py:47 taiga/auth/tokens.py:54
+msgid "Invalid token"
+msgstr "Token inválido"
+
+#: taiga/base/api/fields.py:268
+msgid "This field is required."
+msgstr "Este campo es requerido."
+
+#: taiga/base/api/fields.py:269 taiga/base/api/relations.py:311
+msgid "Invalid value."
+msgstr "Valor inválido."
+
+#: taiga/base/api/fields.py:453
+#, python-format
+msgid "'%s' value must be either True or False."
+msgstr "El valor para '%s' debe ser True o False."
+
+#: taiga/base/api/fields.py:517
+msgid ""
+"Enter a valid 'slug' consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+"Escribe un slug válido que esté formado por letras, números o los símbolos "
+"de guión o subrayado."
+
+#: taiga/base/api/fields.py:532
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+"Seleccione una opción válida. %(value)s no es una de las opciones "
+"disponibles."
+
+#: taiga/base/api/fields.py:595
+msgid "Enter a valid email address."
+msgstr "Introduzca una dirección de email válida."
+
+#: taiga/base/api/fields.py:637
+#, python-format
+msgid "Date has wrong format. Use one of these formats instead: %s"
+msgstr ""
+"La fecha posee un formato inválido. Utiliza alguno de los siguientes "
+"formatos: %s"
+
+#: taiga/base/api/fields.py:701
+#, python-format
+msgid "Datetime has wrong format. Use one of these formats instead: %s"
+msgstr ""
+"La fecha y hora posee un formato inválido. Utiliza alguno de los siguientes "
+"formatos: %s"
+
+#: taiga/base/api/fields.py:771
+#, python-format
+msgid "Time has wrong format. Use one of these formats instead: %s"
+msgstr ""
+"El tiempo indicado posee un formato inválido. Utiliza alguno de los "
+"siguientes formatos: %s"
+
+#: taiga/base/api/fields.py:828
+msgid "Enter a whole number."
+msgstr "Introduce un número entero"
+
+#: taiga/base/api/fields.py:829 taiga/base/api/fields.py:882
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr "Asegúrate de que el valor es menor o igual a %(limit_value)s."
+
+#: taiga/base/api/fields.py:830 taiga/base/api/fields.py:883
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr "Asegúrate de que el valor es mayor o igual a %(limit_value)s."
+
+#: taiga/base/api/fields.py:860
+#, python-format
+msgid "\"%s\" value must be a float."
+msgstr "El valor \"%s\" debe ser un número en coma flotante."
+
+#: taiga/base/api/fields.py:881
+msgid "Enter a number."
+msgstr "Introduce un número."
+
+#: taiga/base/api/fields.py:884
+#, python-format
+msgid "Ensure that there are no more than %s digits in total."
+msgstr "Asegúrate de que no haya más de %s dígitos en total."
+
+#: taiga/base/api/fields.py:885
+#, python-format
+msgid "Ensure that there are no more than %s decimal places."
+msgstr "Asegúrate de que no haya más de %s decimales."
+
+#: taiga/base/api/fields.py:886
+#, python-format
+msgid "Ensure that there are no more than %s digits before the decimal point."
+msgstr ""
+"Asegúrate de que no haya más de %s dígitos en la parte entera del número."
+
+#: taiga/base/api/fields.py:953
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr ""
+
+#: taiga/base/api/fields.py:954
+msgid "No file was submitted."
+msgstr "No se envió el archivo"
+
+#: taiga/base/api/fields.py:955
+msgid "The submitted file is empty."
+msgstr "El archivo enviado está vacío."
+
+#: taiga/base/api/fields.py:956
+#, python-format
+msgid ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr ""
+
+#: taiga/base/api/fields.py:957
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr ""
+
+#: taiga/base/api/fields.py:997
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: taiga/base/api/mixins.py:98
+msgid ""
+"The `allow_empty` parameter is due to be deprecated. To use "
+"`allow_empty=False` style behavior, You should override `get_queryset()` and "
+"explicitly raise a 404 on empty querysets."
+msgstr ""
+
+#: taiga/base/api/pagination.py:115
 msgid "Page is not 'last', nor can it be converted to an int."
 msgstr ""
 
-#: taiga/base/api/generics.py:166
+#: taiga/base/api/pagination.py:119
 #, python-format
 msgid "Invalid page (%(page_number)s): %(message)s"
 msgstr "Página no válida (%(page_number)s): %(message)s"
+
+#: taiga/base/api/permissions.py:61
+msgid "Invalid permission definition."
+msgstr ""
+
+#: taiga/base/api/relations.py:221
+#, python-format
+msgid "Invalid pk '%s' - object does not exist."
+msgstr ""
+
+#: taiga/base/api/relations.py:222
+#, python-format
+msgid "Incorrect type. Expected pk value, received %s."
+msgstr ""
+
+#: taiga/base/api/relations.py:310
+#, python-format
+msgid "Object with %s=%s does not exist."
+msgstr ""
+
+#: taiga/base/api/relations.py:346
+msgid "Invalid hyperlink - No URL match"
+msgstr ""
+
+#: taiga/base/api/relations.py:347
+msgid "Invalid hyperlink - Incorrect URL match"
+msgstr ""
+
+#: taiga/base/api/relations.py:348
+msgid "Invalid hyperlink due to configuration error"
+msgstr ""
+
+#: taiga/base/api/relations.py:349
+msgid "Invalid hyperlink - object does not exist."
+msgstr ""
+
+#: taiga/base/api/relations.py:350
+#, python-format
+msgid "Incorrect type.  Expected url string, received %s."
+msgstr ""
+
+#: taiga/base/api/serializers.py:77
+#, python-brace-format
+msgid "{0} is not a Django model"
+msgstr ""
+
+#: taiga/base/api/serializers.py:226
+msgid "instance should be a queryset or other iterable with many=True"
+msgstr ""
+
+#: taiga/base/api/serializers.py:229
+msgid ""
+"allow_add_remove should only be used for bulk updates, but you have not set "
+"many=True"
+msgstr ""
+
+#: taiga/base/api/serializers.py:296
+msgid "Invalid data"
+msgstr "Datos invalidos"
+
+#: taiga/base/api/serializers.py:388
+msgid "No input provided"
+msgstr ""
+
+#: taiga/base/api/serializers.py:548
+msgid "Cannot create a new item, only existing items may be updated."
+msgstr ""
+
+#: taiga/base/api/serializers.py:559
+msgid "Expected a list of items."
+msgstr ""
+
+#: taiga/base/api/views.py:100
+msgid "Not found"
+msgstr "No encontrado"
+
+#: taiga/base/api/views.py:103
+msgid "Permission denied"
+msgstr "Permiso denegado."
+
+#: taiga/base/api/views.py:352
+#, python-format
+msgid ""
+"Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be "
+"returned from the view, but received a `%s`"
+msgstr ""
+
+#: taiga/base/api/views.py:451
+msgid "Server application error"
+msgstr ""
+
+#: taiga/base/api/viewsets.py:56
+#, python-format
+msgid ""
+"You tried to pass in the %s method name as a keyword argument to %s(). Don't "
+"do that."
+msgstr ""
+
+#: taiga/base/api/viewsets.py:60
+#, python-format
+msgid "%s() received an invalid keyword %r"
+msgstr ""
 
 #: taiga/base/connectors/exceptions.py:24
 msgid "Connection error."
 msgstr "Error de conexión"
 
-#: taiga/base/exceptions.py:30
+#: taiga/base/exceptions.py:53
+msgid "Malformed request."
+msgstr ""
+
+#: taiga/base/exceptions.py:58
+msgid "Incorrect authentication credentials."
+msgstr ""
+
+#: taiga/base/exceptions.py:63
+msgid "Authentication credentials were not provided."
+msgstr ""
+
+#: taiga/base/exceptions.py:68
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: taiga/base/exceptions.py:73
+#, python-format
+msgid "Method '%s' not allowed."
+msgstr ""
+
+#: taiga/base/exceptions.py:81
+msgid "Could not satisfy the request's Accept header"
+msgstr ""
+
+#: taiga/base/exceptions.py:90
+#, python-format
+msgid "Unsupported media type '%s' in request."
+msgstr ""
+
+#: taiga/base/exceptions.py:98
+msgid "Request was throttled."
+msgstr ""
+
+#: taiga/base/exceptions.py:99
+#, python-format
+msgid "Expected available in %d second%s."
+msgstr ""
+
+#: taiga/base/exceptions.py:113
 msgid "Unexpected error"
 msgstr "Error inesperado"
 
-#: taiga/base/exceptions.py:42
+#: taiga/base/exceptions.py:125
 msgid "Not found."
-msgstr ""
+msgstr "No encontrado."
 
-#: taiga/base/exceptions.py:47
+#: taiga/base/exceptions.py:130
 msgid "Method not supported for this endpoint."
 msgstr ""
 
-#: taiga/base/exceptions.py:55 taiga/base/exceptions.py:63
+#: taiga/base/exceptions.py:138 taiga/base/exceptions.py:146
 msgid "Wrong arguments."
 msgstr ""
 
-#: taiga/base/exceptions.py:67
+#: taiga/base/exceptions.py:150
 msgid "Data validation error"
 msgstr ""
 
-#: taiga/base/exceptions.py:79
+#: taiga/base/exceptions.py:162
 msgid "Integrity Error for wrong or invalid arguments"
 msgstr ""
 
-#: taiga/base/exceptions.py:86
+#: taiga/base/exceptions.py:169
 msgid "Precondition error"
+msgstr ""
+
+#: taiga/base/filters.py:74
+msgid "Error in filter params types."
+msgstr ""
+
+#: taiga/base/filters.py:118 taiga/base/filters.py:207
+#: taiga/base/filters.py:264
+msgid "Filtering project diferent value than an integer: {}"
+msgstr ""
+
+#: taiga/base/filters.py:121 taiga/base/filters.py:210
+#: taiga/base/filters.py:266
+msgid "'project' must be an integer value."
 msgstr ""
 
 #: taiga/base/tags.py:25
@@ -170,6 +477,10 @@ msgid ""
 "        "
 msgstr ""
 
+#: taiga/base/utils/signals.py:27
+msgid "The parameters must be lists of at least one parameter (the signal)."
+msgstr ""
+
 #: taiga/export_import/api.py:183
 msgid "Needed dump file"
 msgstr ""
@@ -178,14 +489,78 @@ msgstr ""
 msgid "Invalid dump format"
 msgstr ""
 
-#: taiga/export_import/serializers.py:377
-#: taiga/projects/custom_attributes/serializers.py:104
+#: taiga/export_import/dump_service.py:88
+msgid "error importing project"
+msgstr ""
+
+#: taiga/export_import/dump_service.py:101
+msgid "error importing choices"
+msgstr ""
+
+#: taiga/export_import/dump_service.py:106
+msgid "error importing default choices"
+msgstr ""
+
+#: taiga/export_import/dump_service.py:116
+msgid "error importing custom fields"
+msgstr ""
+
+#: taiga/export_import/dump_service.py:121
+msgid "error importing roles"
+msgstr ""
+
+#: taiga/export_import/dump_service.py:136
+msgid "error importing memberships"
+msgstr ""
+
+#: taiga/export_import/dump_service.py:141
+msgid "error importing milestones"
+msgstr ""
+
+#: taiga/export_import/dump_service.py:146
+msgid "error importing wiki pages"
+msgstr ""
+
+#: taiga/export_import/dump_service.py:151
+msgid "error importing wiki links"
+msgstr ""
+
+#: taiga/export_import/dump_service.py:156
+#: taiga/export_import/dump_service.py:166
+msgid "error importing issues"
+msgstr "error importando las peticiones"
+
+#: taiga/export_import/dump_service.py:161
+msgid "error importing user stories"
+msgstr ""
+
+#: taiga/export_import/serializers.py:158
+msgid "{}=\"{}\" not found in this project"
+msgstr "{}=\"{}\"  no se ha encontrado en este proyecto"
+
+#: taiga/export_import/serializers.py:379
+#: taiga/projects/custom_attributes/serializers.py:103
 msgid "Invalid content. It must be {\"key\": \"value\",...}"
 msgstr ""
 
-#: taiga/export_import/serializers.py:392
-#: taiga/projects/custom_attributes/serializers.py:119
+#: taiga/export_import/serializers.py:394
+#: taiga/projects/custom_attributes/serializers.py:118
 msgid "It contain invalid custom fields."
+msgstr ""
+
+#: taiga/export_import/serializers.py:463
+#: taiga/projects/milestones/serializers.py:63
+#: taiga/projects/serializers.py:65 taiga/projects/serializers.py:91
+#: taiga/projects/serializers.py:114 taiga/projects/serializers.py:149
+msgid "Name duplicated for the project"
+msgstr ""
+
+#: taiga/export_import/tasks.py:49 taiga/export_import/tasks.py:50
+msgid "Error generating project dump"
+msgstr ""
+
+#: taiga/export_import/tasks.py:82 taiga/export_import/tasks.py:83
+msgid "Error loading project dump"
 msgstr ""
 
 #: taiga/export_import/templates/emails/dump_project-subject.jinja:1
@@ -290,26 +665,53 @@ msgstr ""
 msgid "The payload is not a valid application/x-www-form-urlencoded"
 msgstr ""
 
-#: taiga/hooks/bitbucket/event_hooks.py:46
+#: taiga/hooks/bitbucket/event_hooks.py:45
 msgid "The payload is not valid"
 msgstr ""
 
-#: taiga/hooks/bitbucket/event_hooks.py:82
+#: taiga/hooks/bitbucket/event_hooks.py:81
 #: taiga/hooks/github/event_hooks.py:75 taiga/hooks/gitlab/event_hooks.py:74
 msgid "The referenced element doesn't exist"
 msgstr ""
 
-#: taiga/hooks/bitbucket/event_hooks.py:89
+#: taiga/hooks/bitbucket/event_hooks.py:88
 #: taiga/hooks/github/event_hooks.py:82 taiga/hooks/gitlab/event_hooks.py:81
 msgid "The status doesn't exist"
+msgstr ""
+
+#: taiga/hooks/bitbucket/event_hooks.py:94
+msgid "Status changed from BitBucket commit"
+msgstr ""
+
+#: taiga/hooks/github/event_hooks.py:88
+msgid "Status changed from GitHub commit"
 msgstr ""
 
 #: taiga/hooks/github/event_hooks.py:113 taiga/hooks/gitlab/event_hooks.py:114
 msgid "Invalid issue information"
 msgstr ""
 
+#: taiga/hooks/github/event_hooks.py:128
+msgid "Created from GitHub"
+msgstr ""
+
 #: taiga/hooks/github/event_hooks.py:135 taiga/hooks/github/event_hooks.py:144
 msgid "Invalid issue comment information"
+msgstr ""
+
+#: taiga/hooks/github/event_hooks.py:152
+msgid ""
+"From GitHub:\n"
+"\n"
+"{}"
+msgstr ""
+
+#: taiga/hooks/gitlab/event_hooks.py:87
+msgid "Status changed from GitLab commit"
+msgstr ""
+
+#: taiga/hooks/gitlab/event_hooks.py:129
+msgid "Created from GitLab"
 msgstr ""
 
 #: taiga/permissions/permissions.py:21 taiga/permissions/permissions.py:31
@@ -334,7 +736,7 @@ msgstr "Ver tareas"
 #: taiga/permissions/permissions.py:25 taiga/permissions/permissions.py:34
 #: taiga/permissions/permissions.py:69
 msgid "View issues"
-msgstr ""
+msgstr "Ver peticiones"
 
 #: taiga/permissions/permissions.py:26 taiga/permissions/permissions.py:37
 #: taiga/permissions/permissions.py:75
@@ -348,7 +750,7 @@ msgstr "Ver enlaces del wiki"
 
 #: taiga/permissions/permissions.py:35 taiga/permissions/permissions.py:70
 msgid "Vote issues"
-msgstr ""
+msgstr "Votar peticiones"
 
 #: taiga/permissions/permissions.py:39
 msgid "Request membership"
@@ -368,11 +770,11 @@ msgstr ""
 
 #: taiga/permissions/permissions.py:43
 msgid "Add issues"
-msgstr ""
+msgstr "Añadir peticiones"
 
 #: taiga/permissions/permissions.py:44
 msgid "Add comments to issues"
-msgstr ""
+msgstr "Añadir comentarios a peticiones"
 
 #: taiga/permissions/permissions.py:45 taiga/permissions/permissions.py:76
 msgid "Add wiki page"
@@ -432,15 +834,15 @@ msgstr ""
 
 #: taiga/permissions/permissions.py:71
 msgid "Add issue"
-msgstr ""
+msgstr "Añadir petición"
 
 #: taiga/permissions/permissions.py:72
 msgid "Modify issue"
-msgstr ""
+msgstr "Modificar petición"
 
 #: taiga/permissions/permissions.py:73
 msgid "Delete issue"
-msgstr ""
+msgstr "Borrar petición"
 
 #: taiga/permissions/permissions.py:78
 msgid "Delete wiki page"
@@ -474,7 +876,15 @@ msgstr ""
 msgid "Admin roles"
 msgstr ""
 
-#: taiga/projects/api.py:454 taiga/projects/serializers.py:227
+#: taiga/projects/api.py:189
+msgid "Not valid template name"
+msgstr ""
+
+#: taiga/projects/api.py:192
+msgid "Not valid template description"
+msgstr ""
+
+#: taiga/projects/api.py:454 taiga/projects/serializers.py:235
 msgid "At least one of the user must be an active admin"
 msgstr ""
 
@@ -482,12 +892,21 @@ msgstr ""
 msgid "You don't have permisions to see that."
 msgstr ""
 
+#: taiga/projects/attachments/api.py:47
+msgid "Non partial updates not supported"
+msgstr ""
+
+#: taiga/projects/attachments/api.py:62
+msgid "Project ID not matches between object and project"
+msgstr ""
+
 #: taiga/projects/attachments/models.py:54 taiga/projects/issues/models.py:38
 #: taiga/projects/milestones/models.py:39 taiga/projects/models.py:131
-#: taiga/projects/tasks/models.py:37 taiga/projects/userstories/models.py:64
-#: taiga/projects/wiki/models.py:34 taiga/userstorage/models.py:25
+#: taiga/projects/notifications/models.py:57 taiga/projects/tasks/models.py:37
+#: taiga/projects/userstories/models.py:64 taiga/projects/wiki/models.py:34
+#: taiga/userstorage/models.py:25
 msgid "owner"
-msgstr ""
+msgstr "Dueño"
 
 #: taiga/projects/attachments/models.py:56
 #: taiga/projects/custom_attributes/models.py:35
@@ -496,11 +915,11 @@ msgstr ""
 #: taiga/projects/models.py:383 taiga/projects/models.py:412
 #: taiga/projects/models.py:445 taiga/projects/models.py:468
 #: taiga/projects/models.py:495 taiga/projects/models.py:526
-#: taiga/projects/tasks/models.py:41 taiga/projects/userstories/models.py:62
-#: taiga/projects/wiki/models.py:28 taiga/projects/wiki/models.py:66
-#: taiga/users/models.py:193
+#: taiga/projects/notifications/models.py:69 taiga/projects/tasks/models.py:41
+#: taiga/projects/userstories/models.py:62 taiga/projects/wiki/models.py:28
+#: taiga/projects/wiki/models.py:66 taiga/users/models.py:193
 msgid "project"
-msgstr ""
+msgstr "Proyecto"
 
 #: taiga/projects/attachments/models.py:58
 msgid "content type"
@@ -508,7 +927,7 @@ msgstr ""
 
 #: taiga/projects/attachments/models.py:60
 msgid "object id"
-msgstr ""
+msgstr "id de objeto"
 
 #: taiga/projects/attachments/models.py:66
 #: taiga/projects/custom_attributes/models.py:40
@@ -517,15 +936,15 @@ msgstr ""
 #: taiga/projects/tasks/models.py:49 taiga/projects/userstories/models.py:85
 #: taiga/projects/wiki/models.py:41 taiga/userstorage/models.py:29
 msgid "modified date"
-msgstr ""
+msgstr "fecha modificada"
 
 #: taiga/projects/attachments/models.py:71
 msgid "attached file"
-msgstr ""
+msgstr "archivo adjunto"
 
 #: taiga/projects/attachments/models.py:74
 msgid "is deprecated"
-msgstr ""
+msgstr "está desactualizado"
 
 #: taiga/projects/attachments/models.py:75
 #: taiga/projects/custom_attributes/models.py:32
@@ -534,7 +953,7 @@ msgstr ""
 #: taiga/projects/models.py:547 taiga/projects/tasks/models.py:60
 #: taiga/projects/userstories/models.py:90
 msgid "description"
-msgstr ""
+msgstr "descripción"
 
 #: taiga/projects/attachments/models.py:76
 #: taiga/projects/custom_attributes/models.py:33
@@ -544,6 +963,14 @@ msgstr ""
 #: taiga/projects/models.py:489 taiga/projects/models.py:522
 #: taiga/projects/wiki/models.py:71 taiga/users/models.py:188
 msgid "order"
+msgstr "orden"
+
+#: taiga/projects/choices.py:21
+msgid "AppearIn"
+msgstr ""
+
+#: taiga/projects/choices.py:22
+msgid "Talky"
 msgstr ""
 
 #: taiga/projects/custom_attributes/models.py:31
@@ -554,40 +981,48 @@ msgstr ""
 #: taiga/projects/models.py:520 taiga/projects/models.py:543
 #: taiga/users/models.py:180 taiga/webhooks/models.py:27
 msgid "name"
-msgstr ""
+msgstr "nombre"
 
 #: taiga/projects/custom_attributes/models.py:81
-msgid "attributes_values"
-msgstr ""
+msgid "values"
+msgstr "valores"
 
 #: taiga/projects/custom_attributes/models.py:91
 #: taiga/projects/tasks/models.py:33 taiga/projects/userstories/models.py:34
 msgid "user story"
-msgstr ""
+msgstr "historia de usuario"
 
 #: taiga/projects/custom_attributes/models.py:106
 msgid "task"
-msgstr ""
+msgstr "tarea"
 
 #: taiga/projects/custom_attributes/models.py:121
 msgid "issue"
-msgstr ""
+msgstr "petición"
 
-#: taiga/projects/custom_attributes/serializers.py:58
+#: taiga/projects/custom_attributes/serializers.py:57
 msgid "Already exists one with the same name."
-msgstr ""
+msgstr "Ya existe uno con el mismo nombre."
+
+#: taiga/projects/history/api.py:70
+msgid "Comment already deleted"
+msgstr "El comentario ya ha sido borrado."
+
+#: taiga/projects/history/api.py:89
+msgid "Comment not deleted"
+msgstr "El comentario no se borro."
 
 #: taiga/projects/history/choices.py:27
 msgid "Change"
-msgstr ""
+msgstr "Cambio"
 
 #: taiga/projects/history/choices.py:28
 msgid "Create"
-msgstr ""
+msgstr "Crear"
 
 #: taiga/projects/history/choices.py:29
 msgid "Delete"
-msgstr ""
+msgstr "Borrar"
 
 #: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:22
 #, python-format
@@ -598,7 +1033,7 @@ msgstr ""
 #: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:130
 #: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:133
 #: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:156
-#: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:192
+#: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:193
 msgid "from"
 msgstr ""
 
@@ -607,7 +1042,7 @@ msgstr ""
 #: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:144
 #: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:162
 #: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:179
-#: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:198
+#: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:199
 msgid "to"
 msgstr ""
 
@@ -641,10 +1076,11 @@ msgstr ""
 
 #: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:134
 #: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:145
+#: taiga/projects/services/stats.py:124 taiga/projects/services/stats.py:125
 msgid "Unassigned"
 msgstr ""
 
-#: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:209
+#: taiga/projects/history/templates/emails/includes/fields_diff-html.jinja:211
 #: taiga/projects/history/templates/emails/includes/fields_diff-text.jinja:86
 msgid "-deleted-"
 msgstr ""
@@ -667,7 +1103,7 @@ msgstr ""
 
 #: taiga/projects/history/templates/emails/includes/fields_diff-text.jinja:40
 msgid "Deleted"
-msgstr ""
+msgstr "Borrado"
 
 #: taiga/projects/history/templates/emails/includes/fields_diff-text.jinja:54
 msgid "added:"
@@ -785,6 +1221,10 @@ msgstr ""
 
 #: taiga/projects/milestones/models.py:52
 msgid "disponibility"
+msgstr ""
+
+#: taiga/projects/milestones/models.py:75
+msgid "The estimated start must be previous to the estimated finish."
 msgstr ""
 
 #: taiga/projects/milestones/validators.py:12
@@ -954,11 +1394,11 @@ msgstr ""
 
 #: taiga/projects/models.py:575
 msgid "issue statuses"
-msgstr ""
+msgstr "estados de petición"
 
 #: taiga/projects/models.py:576
 msgid "issue types"
-msgstr ""
+msgstr "tipos de petición"
 
 #: taiga/projects/models.py:577
 msgid "priorities"
@@ -986,14 +1426,27 @@ msgstr ""
 
 #: taiga/projects/notifications/mixins.py:87
 msgid "watchers"
-msgstr ""
+msgstr "observadores"
 
-#: taiga/projects/notifications/models.py:57
+#: taiga/projects/notifications/models.py:59
 msgid "created date time"
 msgstr ""
 
-#: taiga/projects/notifications/models.py:59
+#: taiga/projects/notifications/models.py:61
 msgid "updated date time"
+msgstr ""
+
+#: taiga/projects/notifications/models.py:63
+msgid "history entries"
+msgstr ""
+
+#: taiga/projects/notifications/models.py:66
+msgid "notify users"
+msgstr ""
+
+#: taiga/projects/notifications/services.py:63
+#: taiga/projects/notifications/services.py:77
+msgid "Notify exists for specified user and project"
 msgstr ""
 
 #: taiga/projects/notifications/templates/emails/wiki/wikipage-change-subject.jinja:1
@@ -1017,7 +1470,23 @@ msgid ""
 "[%(project)s] Deleted the Wiki Page \"%(page)s\"\n"
 msgstr ""
 
-#: taiga/projects/occ/mixins.py:91
+#: taiga/projects/notifications/validators.py:44
+msgid "Watchers contains invalid users"
+msgstr "Los observadores tienen usuarios invalidos"
+
+#: taiga/projects/occ/mixins.py:35
+msgid "The version must be an integer"
+msgstr ""
+
+#: taiga/projects/occ/mixins.py:56
+msgid "The version is not valid"
+msgstr ""
+
+#: taiga/projects/occ/mixins.py:72
+msgid "The version doesn't match with the current one"
+msgstr ""
+
+#: taiga/projects/occ/mixins.py:92
 msgid "version"
 msgstr ""
 
@@ -1025,49 +1494,61 @@ msgstr ""
 msgid "You can't leave the project if there are no more owners"
 msgstr ""
 
-#: taiga/projects/serializers.py:203
+#: taiga/projects/serializers.py:211
 msgid "Email address is already taken"
 msgstr ""
 
-#: taiga/projects/serializers.py:215
+#: taiga/projects/serializers.py:223
 msgid "Invalid role for the project"
 msgstr ""
 
-#: taiga/projects/serializers.py:370
-msgid "Default options"
-msgstr ""
-
-#: taiga/projects/serializers.py:371
-msgid "User story's statuses"
-msgstr ""
-
-#: taiga/projects/serializers.py:372
-msgid "Points"
-msgstr ""
-
-#: taiga/projects/serializers.py:373
-msgid "Task's statuses"
-msgstr ""
-
-#: taiga/projects/serializers.py:374
-msgid "Issue's statuses"
-msgstr ""
-
-#: taiga/projects/serializers.py:375
-msgid "Issue's types"
-msgstr ""
-
-#: taiga/projects/serializers.py:376
-msgid "Priorities"
-msgstr ""
-
-#: taiga/projects/serializers.py:377
-msgid "Severities"
+#: taiga/projects/serializers.py:321
+msgid "Total milestones must be major or equal to zero"
 msgstr ""
 
 #: taiga/projects/serializers.py:378
-msgid "Roles"
+msgid "Default options"
 msgstr ""
+
+#: taiga/projects/serializers.py:379
+msgid "User story's statuses"
+msgstr ""
+
+#: taiga/projects/serializers.py:380
+msgid "Points"
+msgstr "Puntos"
+
+#: taiga/projects/serializers.py:381
+msgid "Task's statuses"
+msgstr "Estado de tareas"
+
+#: taiga/projects/serializers.py:382
+msgid "Issue's statuses"
+msgstr "Estados de peticion"
+
+#: taiga/projects/serializers.py:383
+msgid "Issue's types"
+msgstr "Tipos de petición"
+
+#: taiga/projects/serializers.py:384
+msgid "Priorities"
+msgstr "Prioridades"
+
+#: taiga/projects/serializers.py:385
+msgid "Severities"
+msgstr "Gravedades"
+
+#: taiga/projects/serializers.py:386
+msgid "Roles"
+msgstr "Roles"
+
+#: taiga/projects/services/stats.py:72
+msgid "Future sprint"
+msgstr "Sprint futuro"
+
+#: taiga/projects/services/stats.py:89
+msgid "Project End"
+msgstr "Final de proyecto"
 
 #: taiga/projects/tasks/api.py:57 taiga/projects/tasks/api.py:60
 #: taiga/projects/tasks/api.py:63 taiga/projects/tasks/api.py:66
@@ -1153,6 +1634,238 @@ msgid ""
 "[Taiga] Added to the project '%(project)s'\n"
 msgstr ""
 
+#. Translators: Name of scrum project template.
+#: taiga/projects/translations.py:28
+msgid "Scrum"
+msgstr "Scrum"
+
+#. Translators: Description of scrum project template.
+#: taiga/projects/translations.py:30
+msgid ""
+"The agile product backlog in Scrum is a prioritized features list, "
+"containing short descriptions of all functionality desired in the product. "
+"When applying Scrum, it's not necessary to start a project with a lengthy, "
+"upfront effort to document all requirements. The Scrum product backlog is "
+"then allowed to grow and change as more is learned about the product and its "
+"customers"
+msgstr ""
+
+#. Translators: Name of kanban project template.
+#: taiga/projects/translations.py:33
+msgid "Kanban"
+msgstr "Kanban"
+
+#. Translators: Description of kanban project template.
+#: taiga/projects/translations.py:35
+msgid ""
+"Kanban is a method for managing knowledge work with an emphasis on just-in-"
+"time delivery while not overloading the team members. In this approach, the "
+"process, from definition of a task to its delivery to the customer, is "
+"displayed for participants to see and team members pull work from a queue."
+msgstr ""
+
+#. Translators: User story point value (value = undefined)
+#: taiga/projects/translations.py:43
+msgid "?"
+msgstr "?"
+
+#. Translators: User story point value (value = 0)
+#: taiga/projects/translations.py:45
+msgid "0"
+msgstr "0"
+
+#. Translators: User story point value (value = 0.5)
+#: taiga/projects/translations.py:47
+msgid "1/2"
+msgstr "1/2"
+
+#. Translators: User story point value (value = 1)
+#: taiga/projects/translations.py:49
+msgid "1"
+msgstr "1"
+
+#. Translators: User story point value (value = 2)
+#: taiga/projects/translations.py:51
+msgid "2"
+msgstr "2"
+
+#. Translators: User story point value (value = 3)
+#: taiga/projects/translations.py:53
+msgid "3"
+msgstr "3"
+
+#. Translators: User story point value (value = 5)
+#: taiga/projects/translations.py:55
+msgid "5"
+msgstr "5"
+
+#. Translators: User story point value (value = 8)
+#: taiga/projects/translations.py:57
+msgid "8"
+msgstr "8"
+
+#. Translators: User story point value (value = 10)
+#: taiga/projects/translations.py:59
+msgid "10"
+msgstr "10"
+
+#. Translators: User story point value (value = 15)
+#: taiga/projects/translations.py:61
+msgid "15"
+msgstr "15"
+
+#. Translators: User story point value (value = 20)
+#: taiga/projects/translations.py:63
+msgid "20"
+msgstr "20"
+
+#. Translators: User story point value (value = 40)
+#: taiga/projects/translations.py:65
+msgid "40"
+msgstr "40"
+
+#. Translators: User story status
+#. Translators: Task status
+#. Translators: Issue status
+#: taiga/projects/translations.py:73 taiga/projects/translations.py:96
+#: taiga/projects/translations.py:112
+msgid "New"
+msgstr "Nuevo"
+
+#. Translators: User story status
+#: taiga/projects/translations.py:76
+msgid "Ready"
+msgstr "Listo"
+
+#. Translators: User story status
+#. Translators: Task status
+#. Translators: Issue status
+#: taiga/projects/translations.py:79 taiga/projects/translations.py:98
+#: taiga/projects/translations.py:114
+msgid "In progress"
+msgstr "En curso"
+
+#. Translators: User story status
+#. Translators: Task status
+#. Translators: Issue status
+#: taiga/projects/translations.py:82 taiga/projects/translations.py:100
+#: taiga/projects/translations.py:116
+msgid "Ready for test"
+msgstr "Listo para testear"
+
+#. Translators: User story status
+#: taiga/projects/translations.py:85
+msgid "Done"
+msgstr "Hecho"
+
+#. Translators: User story status
+#: taiga/projects/translations.py:88
+msgid "Archived"
+msgstr "Archivado"
+
+#. Translators: Task status
+#. Translators: Issue status
+#: taiga/projects/translations.py:102 taiga/projects/translations.py:118
+msgid "Closed"
+msgstr ""
+
+#. Translators: Task status
+#. Translators: Issue status
+#: taiga/projects/translations.py:104 taiga/projects/translations.py:120
+msgid "Needs Info"
+msgstr "Necesita información"
+
+#. Translators: Issue status
+#: taiga/projects/translations.py:122
+msgid "Postponed"
+msgstr "Pospuesta"
+
+#. Translators: Issue status
+#: taiga/projects/translations.py:124
+msgid "Rejected"
+msgstr "Rechazada"
+
+#. Translators: Issue type
+#: taiga/projects/translations.py:132
+msgid "Bug"
+msgstr "Bug"
+
+#. Translators: Issue type
+#: taiga/projects/translations.py:134
+msgid "Question"
+msgstr "Pregunta"
+
+#. Translators: Issue type
+#: taiga/projects/translations.py:136
+msgid "Enhancement"
+msgstr "Mejora"
+
+#. Translators: Issue priority
+#: taiga/projects/translations.py:144
+msgid "Low"
+msgstr "Baja"
+
+#. Translators: Issue priority
+#. Translators: Issue severity
+#: taiga/projects/translations.py:146 taiga/projects/translations.py:159
+msgid "Normal"
+msgstr "Normal"
+
+#. Translators: Issue priority
+#: taiga/projects/translations.py:148
+msgid "High"
+msgstr "Alta"
+
+#. Translators: Issue severity
+#: taiga/projects/translations.py:155
+msgid "Wishlist"
+msgstr "Deseada"
+
+#. Translators: Issue severity
+#: taiga/projects/translations.py:157
+msgid "Minor"
+msgstr "Menor"
+
+#. Translators: Issue severity
+#: taiga/projects/translations.py:161
+msgid "Important"
+msgstr "Importante"
+
+#. Translators: Issue severity
+#: taiga/projects/translations.py:163
+msgid "Critical"
+msgstr "Crítica"
+
+#. Translators: User role
+#: taiga/projects/translations.py:170
+msgid "UX"
+msgstr "UX"
+
+#. Translators: User role
+#: taiga/projects/translations.py:172
+msgid "Design"
+msgstr "Diseño"
+
+#. Translators: User role
+#: taiga/projects/translations.py:174
+msgid "Front"
+msgstr "Front"
+
+#. Translators: User role
+#: taiga/projects/translations.py:176
+msgid "Back"
+msgstr "Back"
+
+#. Translators: User role
+#: taiga/projects/translations.py:178
+msgid "Product Owner"
+msgstr "Product Owner"
+
+#. Translators: User role
+#: taiga/projects/translations.py:180
+msgid "Stakeholder"
+msgstr "Stakeholder"
+
 #: taiga/projects/userstories/api.py:170
 #, python-brace-format
 msgid ""
@@ -1187,21 +1900,21 @@ msgstr ""
 
 #: taiga/projects/userstories/models.py:102
 msgid "generated from issue"
-msgstr ""
+msgstr "generada desde una petición"
 
-#: taiga/projects/userstories/validators.py:12
+#: taiga/projects/userstories/validators.py:28
 msgid "There's no user story with that id"
 msgstr ""
 
-#: taiga/projects/validators.py:12
+#: taiga/projects/validators.py:28
 msgid "There's no project with that id"
 msgstr ""
 
-#: taiga/projects/validators.py:21
+#: taiga/projects/validators.py:37
 msgid "There's no user story status with that id"
 msgstr ""
 
-#: taiga/projects/validators.py:30
+#: taiga/projects/validators.py:46
 msgid "There's no task status with that id"
 msgstr ""
 
@@ -1290,12 +2003,12 @@ msgstr "Email duplicado"
 msgid "Not valid email"
 msgstr "Email no válido"
 
-#: taiga/users/api.py:246 taiga/users/api.py:252
+#: taiga/users/api.py:247 taiga/users/api.py:253
 msgid ""
 "Invalid, are you sure the token is correct and you didn't use it before?"
 msgstr ""
 
-#: taiga/users/api.py:279 taiga/users/api.py:287 taiga/users/api.py:290
+#: taiga/users/api.py:280 taiga/users/api.py:288 taiga/users/api.py:291
 msgid "Invalid, are you sure the token is correct?"
 msgstr ""
 
@@ -1368,21 +2081,16 @@ msgstr "nueva dirección de email"
 msgid "permissions"
 msgstr "permisos"
 
-#: taiga/users/serializers.py:52
-msgid "invalid username"
-msgstr "nombre de usuario no válido"
-
-#: taiga/users/serializers.py:53
+#: taiga/users/serializers.py:51
 msgid "invalid"
 msgstr "no válido"
 
-#: taiga/users/serializers.py:58
-msgid ""
-"Required. 255 characters or fewer. Letters, numbers and /./-/_ characters'"
+#: taiga/users/serializers.py:62
+msgid "Invalid username. Try with a different one."
 msgstr ""
 
-#: taiga/users/serializers.py:64
-msgid "Invalid username. Try with a different one."
+#: taiga/users/services.py:48 taiga/users/services.py:52
+msgid "Username or password does not matches user."
 msgstr ""
 
 #: taiga/users/templates/emails/change_email-body-html.jinja:4
@@ -1511,25 +2219,25 @@ msgid "secret key"
 msgstr ""
 
 #: taiga/webhooks/models.py:39
-msgid "Status code"
+msgid "status code"
 msgstr ""
 
 #: taiga/webhooks/models.py:40
-msgid "Request data"
+msgid "request data"
 msgstr ""
 
 #: taiga/webhooks/models.py:41
-msgid "Request headers"
+msgid "request headers"
 msgstr ""
 
 #: taiga/webhooks/models.py:42
-msgid "Response data"
+msgid "response data"
 msgstr ""
 
 #: taiga/webhooks/models.py:43
-msgid "Response headers"
+msgid "response headers"
 msgstr ""
 
 #: taiga/webhooks/models.py:44
-msgid "Duration"
-msgstr "Duración"
+msgid "duration"
+msgstr "duración"
