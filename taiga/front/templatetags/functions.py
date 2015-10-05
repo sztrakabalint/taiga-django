@@ -21,10 +21,7 @@ from django_sites import get_by_id as get_site_by_id
 from taiga.front.urls import urls
 
 
-register = library.Library()
-
-
-@register.global_function(name="resolve_front_url")
+@library.global_function(name="resolve_front_url")
 def resolve(type, *args):
     site = get_site_by_id("front")
     url_tmpl = "{scheme}//{domain}{url}"
