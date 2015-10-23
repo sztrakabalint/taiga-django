@@ -26,7 +26,7 @@ from taiga.projects.votes import services
 from taiga.projects.votes.utils import attach_total_voters_to_queryset, attach_is_voter_to_queryset
 
 
-class BaseVotedResource:
+class VotedResourceMixin:
     # Note: Update get_queryset method:
     #           def get_queryset(self):
     #               qs = super().get_queryset()
@@ -40,46 +40,24 @@ class BaseVotedResource:
 
         return qs
 
-    def _add_voter(self, permission, request, pk=None):
+    @detail_route(methods=["POST"])
+    def upvote(self, request, pk=None):
         obj = self.get_object()
-        self.check_permissions(request, permission, obj)
+        self.check_permissions(request, "upvote", obj)
 
         services.add_vote(obj, user=request.user)
         return response.Ok()
 
-    def _remove_vote(self, permission, request, pk=None):
+    @detail_route(methods=["POST"])
+    def downvote(self, request, pk=None):
         obj = self.get_object()
-        self.check_permissions(request, permission, obj)
+        self.check_permissions(request, "downvote", obj)
 
         services.remove_vote(obj, user=request.user)
         return response.Ok()
 
 
-class LikedResourceMixin(BaseVotedResource):
-    # Note: objects nedd 'like' and 'unlike' permissions.
-
-    @detail_route(methods=["POST"])
-    def like(self, request, pk=None):
-        return self._add_voter("like", request, pk)
-
-    @detail_route(methods=["POST"])
-    def unlike(self, request, pk=None):
-        return self._remove_vote("unlike", request, pk)
-
-
-class VotedResourceMixin(BaseVotedResource):
-    # Note: objects nedd 'upvote' and 'downvote' permissions.
-
-    @detail_route(methods=["POST"])
-    def upvote(self, request, pk=None):
-        return self._add_voter("upvote", request, pk)
-
-    @detail_route(methods=["POST"])
-    def downvote(self, request, pk=None):
-        return self._remove_vote("downvote", request, pk)
-
-
-class BaseVotersViewSetMixin:
+class VotersViewSetMixin:
     # Is a ModelListViewSet with two required params: permission_classes and resource_model
     serializer_class = serializers.VoterSerializer
     list_serializer_class = serializers.VoterSerializer
@@ -112,11 +90,3 @@ class BaseVotersViewSetMixin:
     def get_queryset(self):
         resource = self.resource_model.objects.get(pk=self.kwargs.get("resource_id"))
         return services.get_voters(resource)
-
-
-class VotersViewSetMixin(BaseVotersViewSetMixin):
-    pass
-
-
-class FansViewSetMixin(BaseVotersViewSetMixin):
-    pass
