@@ -19,9 +19,9 @@
 from taiga.base import throttling
 
 
-class MembershipsRateThrottle(throttling.UserRateThrottle):
+class MembershipsRateThrottle(throttling.ThrottleByActionMixin, throttling.UserRateThrottle):
     scope = "create-memberships"
-    throttled_methods = ["POST", "PUT"]
+    throttled_actions = ["create", "resend_invitation", "bulk_create"]
 
     def exceeded_throttling_restriction(self, request, view):
         self.created_memberships = 0
