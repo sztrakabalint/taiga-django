@@ -25,3 +25,12 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.common")
 app = Celery('taiga')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+
+if settings.SEND_BULK_EMAIL:
+    app.conf.beat_schedule = { 
+            'send-bulk-emails': {
+                'task': 'taiga.projects.notifications.tasks.send_bulk_email',
+                'schedule': settings.CHANGE_NOTIFICATIONS_MIN_INTERVAL,
+                'args': (), 
+            },
+    } 
