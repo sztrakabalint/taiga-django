@@ -26,13 +26,13 @@ def _connect_all_signals():
 
     issue_status_post_move_on_destroy_signal.connect(handle_move_on_destroy_issue_status,
                                                      sender=apps.get_model("projects", "IssueStatus"),
-                                                     dispatch_uid="move_on_destroy_issue_status")
+                                                     dispatch_uid="move_on_destroy_issue_status_on_gitlab")
 
 def _disconnect_all_signals():
     from taiga.projects.signals import issue_status_post_move_on_destroy as issue_status_post_move_on_destroy_signal
 
     issue_status_post_move_on_destroy_signal.disconnect(sender=apps.get_model("projects", "IssueStatus"),
-                                                        dispatch_uid="move_on_destroy_issue_status")
+                                                        dispatch_uid="move_on_destroy_issue_status_on_gitlab")
 
 
 class GitLabHooksAppConfig(AppConfig):
