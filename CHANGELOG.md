@@ -1,8 +1,13 @@
 # Changelog
 
-## 6.11.0 (unreleased)
+## 6.10.2 (unreleased)
 
 - ...
+
+## 6.10.1 (2026-05-06)
+- fix: Dockerfile no longer depends on gnupg.
+- fix: Trello importer bigint fix
+- chore: Add SECURITY.md file
 
 ## 6.10.0 (2026-04-20)
 - Allow archiving projects.
