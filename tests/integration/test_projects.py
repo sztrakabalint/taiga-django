@@ -2460,6 +2460,32 @@ def test_prevent_create_us_default_due_dates_when_already_exists(client):
     assert project.us_duedates.count() == 1
 
 
+def test_non_admin_cannot_create_us_default_due_dates(client):
+    project = f.create_project()
+
+    us_duedates = [{
+        "name": 'Default',
+        "by_default": True,
+        'color': '#0000',
+        'days_to_due': None,
+        'order': 0,
+    }]
+    creation_template = project.creation_template
+    creation_template.us_duedates = us_duedates
+    creation_template.save()
+
+    non_admin = f.UserFactory()
+    f.MembershipFactory(user=non_admin, project=project, is_admin=False)
+    url = reverse('userstory-due-dates-create-default')
+    data = {"project_id": project.pk}
+    client.login(non_admin)
+
+    response = client.json.post(url, json.dumps(data))
+
+    assert response.status_code == 403
+    assert project.us_duedates.count() == 0
+
+
 def test_prevent_delete_us_default_due_dates(client):
     us_duedates = [{
         "name": 'Default',
@@ -2533,6 +2559,32 @@ def test_prevent_create_task_default_due_dates_when_already_exists(client):
     assert project.task_duedates.count() == 1
 
 
+def test_non_admin_cannot_create_task_default_due_dates(client):
+    project = f.create_project()
+
+    task_duedates = [{
+        "name": 'Default',
+        "by_default": True,
+        'color': '#0000',
+        'days_to_due': None,
+        'order': 0,
+    }]
+    creation_template = project.creation_template
+    creation_template.task_duedates = task_duedates
+    creation_template.save()
+
+    non_admin = f.UserFactory()
+    f.MembershipFactory(user=non_admin, project=project, is_admin=False)
+    url = reverse('task-due-dates-create-default')
+    data = {"project_id": project.pk}
+    client.login(non_admin)
+
+    response = client.json.post(url, json.dumps(data))
+
+    assert response.status_code == 403
+    assert project.task_duedates.count() == 0
+
+
 def test_prevent_delete_task_default_due_dates(client):
     task_duedates = [{
         "name": 'Default',
@@ -2604,6 +2656,32 @@ def test_prevent_create_issue_default_due_dates_when_already_exists(client):
 
     assert response.status_code == 400
     assert project.issue_duedates.count() == 1
+
+
+def test_non_admin_cannot_create_issue_default_due_dates(client):
+    project = f.create_project()
+
+    issue_duedates = [{
+        "name": 'Default',
+        "by_default": True,
+        'color': '#0000',
+        'days_to_due': None,
+        'order': 0,
+    }]
+    creation_template = project.creation_template
+    creation_template.issue_duedates = issue_duedates
+    creation_template.save()
+
+    non_admin = f.UserFactory()
+    f.MembershipFactory(user=non_admin, project=project, is_admin=False)
+    url = reverse('issue-due-dates-create-default')
+    data = {"project_id": project.pk}
+    client.login(non_admin)
+
+    response = client.json.post(url, json.dumps(data))
+
+    assert response.status_code == 403
+    assert project.issue_duedates.count() == 0
 
 
 def test_prevent_delete_issue_default_due_dates(client):

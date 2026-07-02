@@ -728,6 +728,7 @@ class UserStoryDueDateViewSet(BlockedByProjectMixin, ModelCrudViewSet):
 
         project_id = request.DATA.get('project_id')
         project = models.Project.objects.get(id=project_id)
+        self.check_permissions(request, 'create', project)
 
         if project.us_duedates.all():
             raise exc.BadRequest(_("Project does already have due dates"))
@@ -804,6 +805,7 @@ class TaskDueDateViewSet(ArchivedByProjectMixin, BlockedByProjectMixin, ModelCru
 
         project_id = request.DATA.get('project_id')
         project = models.Project.objects.get(id=project_id)
+        self.check_permissions(request, 'create', project)
 
         if project.task_duedates.all():
             raise exc.BadRequest(_("Project does already have task due dates"))
@@ -945,6 +947,7 @@ class IssueDueDateViewSet(ArchivedByProjectMixin, BlockedByProjectMixin, ModelCr
 
         project_id = request.DATA.get('project_id')
         project = models.Project.objects.get(id=project_id)
+        self.check_permissions(request, 'create', project)
 
         if project.issue_duedates.all():
             raise exc.BadRequest(_("Project does already have issue due dates"))
