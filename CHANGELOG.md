@@ -1,8 +1,11 @@
 # Changelog
 
-## 6.10.2 (unreleased)
+## 6.10.3 (unreleased)
 
 - ...
+
+## 6.10.2 (2026-07-02)
+- fix: enforce permission check on create_default due date endpoints
 
 ## 6.10.1 (2026-05-06)
 - fix: Dockerfile no longer depends on gnupg.
