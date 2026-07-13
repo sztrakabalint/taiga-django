@@ -46,6 +46,26 @@ def test_get_valid_csv(client):
     assert response.status_code == 200
 
 
+def test_api_filters_data_private_project_is_forbidden(client):
+    project = f.create_project(is_private=True, anon_permissions=[], public_permissions=[])
+
+    url = reverse("epics-filters-data") + "?project={}".format(project.id)
+    response = client.get(url)
+
+    assert response.status_code == 401
+
+
+def test_api_filters_data_public_project_is_accessible_anonymously(client):
+    project = f.create_project(is_private=False,
+                               anon_permissions=["view_epics"],
+                               public_permissions=["view_epics"])
+
+    url = reverse("epics-filters-data") + "?project={}".format(project.id)
+    response = client.get(url)
+
+    assert response.status_code == 200
+
+
 def test_custom_fields_csv_generation():
     project = f.ProjectFactory.create(epics_csv_uuid=uuid.uuid4().hex)
     attr = f.EpicCustomAttributeFactory.create(project=project, name="attr1", description="desc")

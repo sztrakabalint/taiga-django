@@ -968,6 +968,26 @@ def test_api_filters_data(client):
     assert next(filter(lambda i: i['name'] == tag3, response.data["tags"]))["count"] == 3
 
 
+def test_api_filters_data_private_project_is_forbidden(client):
+    project = f.create_project(is_private=True, anon_permissions=[], public_permissions=[])
+
+    url = reverse("tasks-filters-data") + "?project={}".format(project.id)
+    response = client.get(url)
+
+    assert response.status_code == 401
+
+
+def test_api_filters_data_public_project_is_accessible_anonymously(client):
+    project = f.create_project(is_private=False,
+                               anon_permissions=["view_tasks"],
+                               public_permissions=["view_tasks"])
+
+    url = reverse("tasks-filters-data") + "?project={}".format(project.id)
+    response = client.get(url)
+
+    assert response.status_code == 200
+
+
 def test_api_validator_assigned_to_when_update_tasks(client):
     project = f.create_project(anon_permissions=list(map(lambda x: x[0], ANON_PERMISSIONS)),
                                public_permissions=list(map(lambda x: x[0], ANON_PERMISSIONS)))

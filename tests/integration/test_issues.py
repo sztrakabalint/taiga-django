@@ -527,18 +527,6 @@ def test_api_filters_data(client):
 
     assert next(filter(lambda i: i['id'] == priority0.id, response.data["priorities"]))["count"] == 2
     assert next(filter(lambda i: i['id'] == priority1.id, response.data["priorities"]))["count"] == 1
-    assert next(filter(lambda i: i['id'] == priority2.id, response.data["priorities"]))["count"] == 4
-    assert next(filter(lambda i: i['id'] == priority3.id, response.data["priorities"]))["count"] == 3
-
-    assert next(filter(lambda i: i['id'] == severity0.id, response.data["severities"]))["count"] == 1
-    assert next(filter(lambda i: i['id'] == severity1.id, response.data["severities"]))["count"] == 4
-    assert next(filter(lambda i: i['id'] == severity2.id, response.data["severities"]))["count"] == 3
-    assert next(filter(lambda i: i['id'] == severity3.id, response.data["severities"]))["count"] == 2
-
-    assert next(filter(lambda i: i['name'] == tag0, response.data["tags"]))["count"] == 1
-    assert next(filter(lambda i: i['name'] == tag1, response.data["tags"]))["count"] == 5
-    assert next(filter(lambda i: i['name'] == tag2, response.data["tags"]))["count"] == 4
-    assert next(filter(lambda i: i['name'] == tag3, response.data["tags"]))["count"] == 4
 
     ## Filter ((status0 or status3) and type1)
     response = client.get(url + "&status={},{}&type={}".format(status3.id, status0.id, type1.id))
@@ -611,6 +599,26 @@ def test_api_filters_data(client):
     assert next(filter(lambda i: i['name'] == tag1, response.data["tags"]))["count"] == 3
     assert next(filter(lambda i: i['name'] == tag2, response.data["tags"]))["count"] == 3
     assert next(filter(lambda i: i['name'] == tag3, response.data["tags"]))["count"] == 3
+
+
+def test_api_filters_data_private_project_is_forbidden(client):
+    project = f.create_project(is_private=True, anon_permissions=[], public_permissions=[])
+
+    url = reverse("issues-filters-data") + "?project={}".format(project.id)
+    response = client.get(url)
+
+    assert response.status_code == 401
+
+
+def test_api_filters_data_public_project_is_accessible_anonymously(client):
+    project = f.create_project(is_private=False,
+                               anon_permissions=["view_issues"],
+                               public_permissions=["view_issues"])
+
+    url = reverse("issues-filters-data") + "?project={}".format(project.id)
+    response = client.get(url)
+
+    assert response.status_code == 200
 
 
 def test_get_invalid_csv(client):

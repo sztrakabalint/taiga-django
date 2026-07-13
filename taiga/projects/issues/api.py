@@ -183,6 +183,7 @@ class IssueViewSet(AssignedToSignalMixin, OCCResourceMixin, VotedResourceMixin,
     def filters_data(self, request, *args, **kwargs):
         project_id = request.QUERY_PARAMS.get("project", None)
         project = get_object_or_error(Project, request.user, id=project_id)
+        self.check_permissions(request, "filters_data", project)
 
         filter_backends = self.get_filter_backends()
         types_filter_backends = (f for f in filter_backends if f != filters.IssueTypesFilter)

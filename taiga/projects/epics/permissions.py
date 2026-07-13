@@ -20,7 +20,7 @@ class EpicPermission(TaigaResourcePermission):
     partial_update_perms = CommentAndOrUpdatePerm('modify_epic', 'comment_epic')
     destroy_perms = HasProjectPerm('delete_epic')
     list_perms = AllowAny()
-    filters_data_perms = AllowAny()
+    filters_data_perms = HasProjectPerm('view_epics')
     csv_perms = AllowAny()
     bulk_create_perms = HasProjectPerm('add_epic')
     upvote_perms = IsAuthenticated() & HasProjectPerm('view_epics')

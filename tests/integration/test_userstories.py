@@ -852,7 +852,6 @@ def test_api_filters_data(client):
     assert next(filter(lambda i: i['id'] == user1.id, response.data["assigned_to"]))["count"] == 3
     assert next(filter(lambda i: i['id'] == user2.id, response.data["assigned_to"]))["count"] == 2
     assert next(filter(lambda i: i['id'] == user3.id, response.data["assigned_to"]))["count"] == 1
-
     assert next(filter(lambda i: i['id'] == user1.id, response.data["assigned_users"]))["count"] == 5
     assert next(filter(lambda i: i['id'] == user2.id, response.data["assigned_users"]))["count"] == 2
 
@@ -954,6 +953,26 @@ def test_api_filters_data(client):
     assert next(filter(lambda i: i['id'] == epic0.id, response.data["epics"]))["count"] == 3
     assert next(filter(lambda i: i['id'] == epic1.id, response.data["epics"]))["count"] == 1
     assert next(filter(lambda i: i['id'] == epic2.id, response.data["epics"]))["count"] == 2
+
+
+def test_api_filters_data_private_project_is_forbidden(client):
+    project = f.create_project(is_private=True, anon_permissions=[], public_permissions=[])
+
+    url = reverse("userstories-filters-data") + "?project={}".format(project.id)
+    response = client.get(url)
+
+    assert response.status_code == 401
+
+
+def test_api_filters_data_public_project_is_accessible_anonymously(client):
+    project = f.create_project(is_private=False,
+                               anon_permissions=["view_us"],
+                               public_permissions=["view_us"])
+
+    url = reverse("userstories-filters-data") + "?project={}".format(project.id)
+    response = client.get(url)
+
+    assert response.status_code == 200
 
 
 
