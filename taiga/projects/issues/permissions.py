@@ -21,7 +21,7 @@ class IssuePermission(TaigaResourcePermission):
     partial_update_perms = CommentAndOrUpdatePerm('modify_issue', 'comment_issue')
     destroy_perms = HasProjectPerm('delete_issue')
     list_perms = AllowAny()
-    filters_data_perms = AllowAny()
+    filters_data_perms = HasProjectPerm('view_issues')
     csv_perms = AllowAny()
     bulk_create_perms = HasProjectPerm('add_issue')
     bulk_update_milestone_perms = HasProjectPerm('modify_issue')
