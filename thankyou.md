@@ -45,3 +45,5 @@ big, to improve Taiga's overall security rating.
 ### 2026
 
 - Robert Flosbach (Neodyme AG)
+- @geo-chen
+- Ugur Ozer (Aeon AI Risk Management)
