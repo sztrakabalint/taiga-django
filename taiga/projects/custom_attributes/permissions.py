@@ -71,9 +71,9 @@ class IssueCustomAttributePermission(TaigaResourcePermission):
 class EpicCustomAttributesValuesPermission(TaigaResourcePermission):
     enough_perms = IsProjectAdmin() | IsSuperUser()
     global_perms = None
-    retrieve_perms = HasProjectPerm('view_us')
-    update_perms = HasProjectPerm('modify_us')
-    partial_update_perms = HasProjectPerm('modify_us')
+    retrieve_perms = HasProjectPerm('view_epics')
+    update_perms = HasProjectPerm('modify_epic')
+    partial_update_perms = HasProjectPerm('modify_epic')
 
 
 class UserStoryCustomAttributesValuesPermission(TaigaResourcePermission):
